@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "gh:publish": "gh-pages -d dist/ -m \"Outgoing. 🦇\""
+    "gh:publish": "cp public/CNAME dist/ && gh-pages -d dist/ -m \"Outgoing. 🦇\""
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
