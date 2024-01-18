@@ -15,32 +15,27 @@
   fetch('//http-proxy.vastur.com?url=https://www.submarinecablemap.com/api/v3/cable/cable-geo.json')
   .then(r => r.json())
   .then(cablesGeo => {
-    let cablePaths = [];
+    const cablePaths = []
     cablesGeo.features.forEach(({ geometry, properties }) => {
-      geometry.coordinates.forEach(coords => cablePaths.push({ coords, properties }));
-    });
+      geometry.coordinates.forEach((coords) => (
+        cablePaths.push({ coords, properties })
+      ))
+    })
 
     globe
     .pathsData(cablePaths)
     .pathPoints('coords')
     .pathPointLat(p => p[1])
     .pathPointLng(p => p[0])
-    .pathColor(path => path.properties.color)
-    .pathLabel(path => path.properties.name)
+    .pathColor((path) => path.properties.color)
+    .pathLabel((path) => path.properties.name)
     .pathDashLength(0.1)
     .pathDashGap(0.008)
     .pathDashAnimateTime(12000);
   })
 </script>
 
-<html>
-  <head>
-    <style>body { margin: 0 }</style>
-  </head>
-  <body>
-    <article id="globe"/>
-  </body>
-</html>
+<article id="globe"/>
 
 <style>
   .logo {
